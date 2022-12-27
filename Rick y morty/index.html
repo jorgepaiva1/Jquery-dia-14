@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <title>Rick y Morty</title>
+</head>
+<body>
+    <div>
+        <p> Rick y Morty</p>
+    </div>
+
+    <button class="boton" id="boton" onclick="Datos('https://rickandmortyapi.com/api/character')"> Mostrar</button>
+    
+    <div id="personajes">
+
+    </div>
+
+    <script> 
+        function Datos(enlace){
+            $.ajax({
+                url:enlace,
+                contentType:"application/json",
+                dataType: 'json',
+                success: function(dato){
+                    dato.results.forEach(element => {
+                        $("#personajes").append("<div id='ITEM'>"+element.name+"<br>"+"<img src="+element.image+"><br>"+"</div>")
+                    });
+                    if (result.info.next){
+                        Datos(result.info.next)
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>
